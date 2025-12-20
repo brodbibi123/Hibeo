@@ -895,7 +895,7 @@ function UpdateIslandESP()
                             v21.TextYAlignment = "Top"
                             v21.BackgroundTransparency = 1
                             v21.TextStrokeTransparency = 0.5
-                            v21.TextColor3 = Color3.fromRGB(255, 255, 255)
+                            v21.Text3 = Color3.fromRGB(255, 255, 255)
                         else
                             l_v18_0.NameEsp.TextLabel.Text = l_v18_0.Name .. "   \n" .. round((game:GetService("Players").LocalPlayer.Character.Head.Position - l_v18_0.Position).Magnitude / 3) .. " Distance"
                         end
@@ -3675,7 +3675,7 @@ l_ScreenGui_0.Parent = game.CoreGui
 local l_ImageButton_0 = Instance.new("ImageButton")
 l_ImageButton_0.Size = UDim2.new(0, 50, 0, 50)
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
-l_ImageButton_0.Image = "rbxassetid://73932375163404"
+l_ImageButton_0.Image = "rbxassetid://120213707198275"
 l_ImageButton_0.BackgroundTransparency = 1
 l_ImageButton_0.Parent = l_ScreenGui_0
 local l_UICorner_0 = Instance.new("UICorner")
@@ -3691,7 +3691,7 @@ local v471 = {
     Color3.fromRGB(255, 255, 0),
     Color3.fromRGB(0, 255, 0),
     Color3.fromRGB(0, 255, 255),
-    Color3.fromRGB(0, 0, 0),
+    Color3.fromRGB(0, 0, 130),
     Color3.fromRGB(139, 0, 255)
 }
 task.spawn(function()
@@ -3757,25 +3757,25 @@ local v496 = v466:MakeTab({"Settings", "settings"})
 v484:AddDiscordInvite({
     Name = "ASSU",
     Description = "Link Sever Discord",
-    Logo = "rbxassetid://73932375163404",
+    Logo = "rbxassetid://120213707198275",
     Invite = "https://discord.gg/DIE"
 })
 v484:AddDiscordInvite({
     Name = "MISU",
     Description = "CEASER",
-    Logo = "rbxassetid://73932375163404",
+    Logo = "rbxassetid://120213707198275",
     Invite = "j97maifananhjack"
 })
 v484:AddDiscordInvite({
     Name = "GOTU",
-    Description = "NIGSER",
-    Logo = "rbxassetid://73932375163404",
+    Description = "KONTU",
+    Logo = "rbxassetid://120213707198275",
     Invite = "hi"
 })
 v484:AddDiscordInvite({
     Name = "LOFU",
-    Description = "NI#",
-    Logo = "rbxassetid://73932375163404",
+    Description = "NIBU",
+    Logo = "rbxassetid://120213707198275",
     Invite = "UIA"
 })
 local _ = v485:AddSection({"Select Melee,Sword,Gun,Fruit"})
@@ -9775,3 +9775,4 @@ v496:AddButton({Title = "Server Hop", Callback = function()
     Hop()
 end})
 return 
+n 
