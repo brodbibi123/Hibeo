@@ -3675,7 +3675,7 @@ l_ScreenGui_0.Parent = game.CoreGui
 local l_ImageButton_0 = Instance.new("ImageButton")
 l_ImageButton_0.Size = UDim2.new(0, 50, 0, 50)
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
-l_ImageButton_0.Image = "rbxassetid://120213707198275"
+l_ImageButton_0.Image = "rbxassetid://116986097337819"
 l_ImageButton_0.BackgroundTransparency = 1
 l_ImageButton_0.Parent = l_ScreenGui_0
 local l_UICorner_0 = Instance.new("UICorner")
@@ -3757,25 +3757,25 @@ local v496 = v466:MakeTab({"Settings", "settings"})
 v484:AddDiscordInvite({
     Name = "ASSU",
     Description = "Link Sever Discord",
-    Logo = "rbxassetid://120213707198275",
+    Logo = "rbxassetid://116986097337819",
     Invite = "https://discord.gg/DIE"
 })
 v484:AddDiscordInvite({
     Name = "MISU",
     Description = "CEASER",
-    Logo = "rbxassetid://120213707198275",
+    Logo = "rbxassetid://116986097337819",
     Invite = "j97maifananhjack"
 })
 v484:AddDiscordInvite({
     Name = "GOTU",
     Description = "KONTU",
-    Logo = "rbxassetid://120213707198275",
+    Logo = "rbxassetid://116986097337819",
     Invite = "hi"
 })
 v484:AddDiscordInvite({
     Name = "LOFU",
     Description = "NIBU",
-    Logo = "rbxassetid://120213707198275",
+    Logo = "rbxassetid://116986097337819",
     Invite = "UIA"
 })
 local _ = v485:AddSection({"Select Melee,Sword,Gun,Fruit"})
