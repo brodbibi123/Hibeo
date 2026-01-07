@@ -1,0 +1,92 @@
+-- [[ FILE NÀY ĐỂ TRÊN GITHUB: Saber.lua ]]
+local Player = game.Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local commF = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
+
+-- Đảm bảo có hàm MoveTo để code chạy được
+local function _tp(cf)
+    local Root = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+    if not Root then return end
+    local LV = Root:FindFirstChild("FarmLV") or Instance.new("LinearVelocity", Root)
+    local AT = Root:FindFirstChild("FarmAT") or Instance.new("Attachment", Root)
+    LV.Name = "FarmLV"; AT.Name = "FarmAT"
+    LV.MaxForce = math.huge; LV.Attachment0 = AT; LV.RelativeTo = Enum.ActuatorRelativeTo.World
+    
+    local Dist = (cf.Position - Root.Position).Magnitude
+    if Dist > 10 then
+        LV.VectorVelocity = (cf.Position - Root.Position).Unit * 350
+    else
+        LV.VectorVelocity = Vector3.zero
+        Root.CFrame = cf
+    end
+end
+
+local function EquipWeapon(ToolName)
+    if Player.Backpack:FindFirstChild(ToolName) then
+        Player.Character.Humanoid:EquipTool(Player.Backpack:FindFirstChild(ToolName))
+    end
+end
+
+-- BẮT ĐẦU LOGIC SABER FULL
+pcall(function()
+    if workspace.Map.Jungle.Final.Part.Transparency == 0 then
+        if workspace.Map.Jungle.QuestPlates.Door.Transparency == 0 then
+            -- Logic nhấn 5 nút Jungle
+            local startPos = CFrame.new(-1612.55884, 36.9774132, 148.719543)
+            if (startPos.Position - Player.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+                _tp(Player.Character.HumanoidRootPart.CFrame)
+                wait(0.5); Player.Character.HumanoidRootPart.CFrame = workspace.Map.Jungle.QuestPlates.Plate1.Button.CFrame
+                wait(0.5); Player.Character.HumanoidRootPart.CFrame = workspace.Map.Jungle.QuestPlates.Plate2.Button.CFrame
+                wait(0.5); Player.Character.HumanoidRootPart.CFrame = workspace.Map.Jungle.QuestPlates.Plate3.Button.CFrame
+                wait(0.5); Player.Character.HumanoidRootPart.CFrame = workspace.Map.Jungle.QuestPlates.Plate4.Button.CFrame
+                wait(0.5); Player.Character.HumanoidRootPart.CFrame = workspace.Map.Jungle.QuestPlates.Plate5.Button.CFrame
+                wait(0.5)
+            else
+                _tp(startPos)
+            end
+        else
+            if workspace.Map.Desert.Burn.Part.Transparency == 0 then
+                -- Logic lấy Đuốc và Đốt nhà ở Sa mạc
+                if Player.Backpack:FindFirstChild("Torch") or Player.Character:FindFirstChild("Torch") then
+                    EquipWeapon("Torch")
+                    firetouchinterest(Player.Character.Torch.Handle, workspace.Map.Desert.Burn.Fire, 0)
+                    firetouchinterest(Player.Character.Torch.Handle, workspace.Map.Desert.Burn.Fire, 1)
+                    _tp(CFrame.new(1114.61475, 5.04679728, 4350.22803))
+                else
+                    _tp(CFrame.new(-1610.00757, 11.5049858, 164.001587))
+                end
+            else
+                -- Logic lấy Cúp, hứng nước và gặp Sickman
+                if commF:InvokeServer("ProQuestProgress", "SickMan") ~= 0 then
+                    commF:InvokeServer("ProQuestProgress", "GetCup")
+                    wait(0.5); EquipWeapon("Cup")
+                    wait(0.5); commF:InvokeServer("ProQuestProgress", "FillCup", Player.Character.Cup)
+                    wait(0.5); commF:InvokeServer("ProQuestProgress", "SickMan")
+                else
+                    -- Logic Mob Leader và RichSon
+                    local richStatus = commF:InvokeServer("ProQuestProgress", "RichSon")
+                    if richStatus == nil then
+                        commF:InvokeServer("ProQuestProgress", "RichSon")
+                    elseif richStatus == 0 then
+                        if workspace.Enemies:FindFirstChild("Mob Leader") then
+                            _tp(workspace.Enemies["Mob Leader"].HumanoidRootPart.CFrame * CFrame.new(0, 25, 0))
+                        else
+                            _tp(CFrame.new(-2967.59521, -4.91089821, 5328.70703))
+                        end
+                    elseif richStatus == 1 then
+                        commF:InvokeServer("ProQuestProgress", "RichSon")
+                        EquipWeapon("Relic")
+                        _tp(CFrame.new(-1404.91504, 29.9773273, 3.80598116))
+                    end
+                end
+            end
+        end
+    else
+        -- Bước cuối: Đánh Boss Saber Expert
+        if workspace.Enemies:FindFirstChild("Saber Expert") then
+            _tp(workspace.Enemies["Saber Expert"].HumanoidRootPart.CFrame * CFrame.new(0, 25, 0))
+        else
+            _tp(CFrame.new(-1401.85046, 29.9773273, 8.81916237))
+        end
+    end
+end)
